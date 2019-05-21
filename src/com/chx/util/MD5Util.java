@@ -1,0 +1,27 @@
+package com.chx.util;
+
+import sun.misc.BASE64Encoder;
+
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+/**
+ * Created by CHX on 2019/5/21.
+ */
+public class MD5Util {
+
+    public static String MD5Encode(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        return MD5Encode(str,"utf-8");
+    }
+
+    public static String MD5Encode(String str, String charsetname) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        BASE64Encoder base64en = new BASE64Encoder();
+        return base64en.encode(md5.digest(str.getBytes(charsetname)));
+    }
+
+    public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        System.out.println(MD5Util.MD5Encode("123456"));
+    }
+}
